@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>DPW OFFICIAL STORE</title>
+  <title>Toko Online SPA</title>
   <style>
     :root {
       --accent:#06b6d4;
@@ -21,8 +21,7 @@
     header h1 {font-size:18px;margin:0;}
     main {max-width:1000px;margin:0 auto;padding:20px;}
     .grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
-    .card {background:var(--card);padding:16px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,.05);text-align:center;}
-    .card img {width:100%;max-height:150px;object-fit:cover;border-radius:10px;margin-bottom:10px;}
+    .card {background:var(--card);padding:16px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,.05);}
     .product-title {font-weight:600;margin-bottom:6px;}
     .price {font-weight:600;margin-bottom:10px;}
     .btn {
@@ -43,19 +42,19 @@
 </head>
 <body>
   <header>
-    <img src="https://files.catbox.moe/bt2fdl.png" alt="Logo">
+    <img src="https://via.placeholder.com/36" alt="Logo">
     <h1>DPW OFFICIAL STORE</h1>
   </header>
   <main id="app"></main>
-  <footer>© 2025 Dpw Official Store</footer>
+  <footer>© 2025 DPW OFFICIAL STORE</footer>
 
 <script>
 const app=document.getElementById('app');
 
-// Data Produk (tambahkan field "image")
+// Data Produk
 const PRODUCTS=[
-  {id:'p1',name:'Canva Pro ',price:20000},
-  {id:'p2',name:'CapCut ',price:25000},
+  {id:'p1',name:'Produk A - Starter',price:50000},
+  {id:'p2',name:'Produk B - Pro',price:120000},
   {id:'p3',name:'Produk C - Ultimate',price:250000}
 ];
 
@@ -67,7 +66,6 @@ function renderList(){
   app.innerHTML=`<div class="grid">
     ${PRODUCTS.map(p=>`
       <div class="card">
-        <img src="${p.image}" alt="${p.name}">
         <div class="product-title">${p.name}</div>
         <div class="price">${rupiah(p.price)}</div>
         <button class="btn" onclick="renderForm('${p.id}')">Order</button>
@@ -88,7 +86,6 @@ function renderForm(pid){
         </div>
         <span class="back-link" onclick="renderList()">← Kembali</span>
       </div>
-      <img src="${p.image}" alt="${p.name}" style="width:100%;max-height:200px;object-fit:cover;border-radius:10px;margin-bottom:15px;">
       <div class="form-row">
         <label>Nama Produk</label>
         <input type="text" id="productName" value="${p.name}" readonly>
@@ -116,6 +113,23 @@ function renderForm(pid){
     const q=parseInt(document.getElementById('qty').value)||1;
     document.getElementById('total').textContent=rupiah(q*p.price);
   });
+}
+
+// Submit order ke Telegram
+function submitOrder(pid){
+  const p=PRODUCTS.find(x=>x.id===pid);
+  const q=Math.max(1,parseInt(document.getElementById('qty').value)||1);
+  const buyer=document.getElementById('buyer').value.trim();
+  const email=document.getElementById('email').value.trim();
+  if(!buyer||!email){alert("Isi semua field!");return;}
+  const msg=`Pesanan baru:%0AProduk: ${p.name}%0AJumlah: ${q}%0ATotal: ${rupiah(p.price*q)}%0ANama: ${buyer}%0AEmail: ${email}`;
+
+  const BOT_TOKEN="8213452798:AAHX9tgzltwwKgV0sMNiUMU8To1v8s2FM-A";
+  const CHAT_ID="7133374029";
+  fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${msg}`)
+    .then(r=>r.json())
+    .then(()=>{alert("Pesanan terkirim!");renderList();})
+    .catch(()=>alert("Gagal mengirim pesanan."));
 }
 
 // Load awal
