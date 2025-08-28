@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CYBER INDONESIA STORE</title>
+  <style>
+    :root {
+      --accent:#06b6d4;
+      --muted:#64748b;
+      --card:#ffffff;
+      --bg:#f8fafc;
+    }
+    body {margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:#0f172a;}
+    header {
+      display:flex;align-items:center;gap:10px;
+      padding:12px 20px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.08);
+      position:sticky;top:0;z-index:10;
+    }
+    header img {width:36px;height:36px;}
+    header h1 {font-size:18px;margin:0;}
+    main {max-width:1000px;margin:0 auto;padding:20px;}
+    .grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+    .card {background:var(--card);padding:16px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,.05);text-align:center;}
+    .card img {width:100%;max-height:150px;object-fit:cover;border-radius:10px;margin-bottom:10px;}
+    .product-title {font-weight:600;margin-bottom:6px;}
+    .price {font-weight:600;margin-bottom:10px;}
+    .btn {
+      display:inline-block;background:var(--accent);color:white;
+      padding:10px 14px;border:none;border-radius:8px;
+      cursor:pointer;font-weight:600;
+    }
+    .form-row {margin-bottom:12px;}
+    label {display:block;font-size:14px;color:var(--muted);margin-bottom:6px;}
+    input[type=text],input[type=email],input[type=number] {
+      width:100%;padding:10px;border-radius:8px;border:1px solid #cbd5e1;
+    }
+    .total-box {display:flex;justify-content:space-between;align-items:center;
+      padding:12px;border-radius:10px;background:#f1f5f9;margin-top:12px;}
+    .back-link {cursor:pointer;color:var(--accent);font-size:14px;}
+    footer {margin-top:20px;text-align:center;font-size:13px;color:var(--muted);}
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://via.placeholder.com/36" alt="Logo">
+    <h1>CYBER INDONESIA STORE</h1>
+  </header>
+  <main id="app"></main>
+  <footer>© 2025 Cyber Indonesia Store</footer>
+
+<script>
+const app=document.getElementById('app');
+
+// Data Produk (tambahkan field "image")
+const PRODUCTS=[
+  {id:'p1',name:'Produk A - Starter',price:50000,image:"https://via.placeholder.com/300x200?text=Starter"},
+  {id:'p2',name:'Produk B - Pro',price:120000,image:"https://via.placeholder.com/300x200?text=Pro"},
+  {id:'p3',name:'Produk C - Ultimate',price:250000,image:"https://via.placeholder.com/300x200?text=Ultimate"}
+];
+
+// Format Rupiah
+const rupiah=n=>new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR'}).format(n);
+
+// Render daftar produk
+function renderList(){
+  app.innerHTML=`<div class="grid">
+    ${PRODUCTS.map(p=>`
+      <div class="card">
+        <img src="${p.image}" alt="${p.name}">
+        <div class="product-title">${p.name}</div>
+        <div class="price">${rupiah(p.price)}</div>
+        <button class="btn" onclick="renderForm('${p.id}')">Order</button>
+      </div>
+    `).join('')}
+  </div>`;
+}
+
+// Render form order
+function renderForm(pid){
+  const p=PRODUCTS.find(x=>x.id===pid);
+  app.innerHTML=`
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div>
+          <div class="product-title">Order: ${p.name}</div>
+          <div style="font-size:14px;color:gray">Harga satuan: ${rupiah(p.price)}</div>
+        </div>
+        <span class="back-link" onclick="renderList()">← Kembali</span>
+      </div>
+      <img src="${p.image}" alt="${p.name}" style="width:100%;max-height:200px;object-fit:cover;border-radius:10px;margin-bottom:15px;">
+      <div class="form-row">
+        <label>Nama Produk</label>
+        <input type="text" id="productName" value="${p.name}" readonly>
+      </div>
+      <div class="form-row">
+        <label>Jumlah</label>
+        <input type="number" id="qty" value="1" min="1">
+      </div>
+      <div class="form-row">
+        <label>Nama Pembeli</label>
+        <input type="text" id="buyer" placeholder="Nama lengkap">
+      </div>
+      <div class="form-row">
+        <label>Email Pembeli</label>
+        <input type="email" id="email" placeholder="email@domain.com">
+      </div>
+      <div class="total-box">
+        <div><div style="font-size:13px;color:gray">Total</div>
+          <div id="total">${rupiah(p.price)}</div></div>
+        <button class="btn" onclick="submitOrder('${p.id}')">Order</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('qty').addEventListener('input',()=>{
+    const q=parseInt(document.getElementById('qty').value)||1;
+    document.getElementById('total').textContent=rupiah(q*p.price);
+  });
+}
+
+// Load awal
+renderList();
+</script>
+</body>
+</html>
