@@ -1,64 +1,263 @@
 <!doctype html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Maintenance - DPW OFFICIAL STORE</title>
-  <style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DPW OFFICIAL STORE</title>
+    <link rel="icon" type="image/png" href="https://files.catbox.moe/bt2fdl.png">
+   <style>
+ :root {
+      --accent:#7c3aed; /* Ungu */
+      --accent2:#ec4899; /* Pink */
+      --muted:#94a3b8;
+      --card:#1e293b;
+      --bg:#0f172a;
+      --text:#f8fafc;
+    }
     body {
       margin:0;
-      font-family:Inter,Arial,sans-serif;
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      background: linear-gradient(135deg, #7c3aed, #ec4899);
-      color:#f8fafc;
-      text-align:center;
-      overflow:hidden;
+      font-family:Inter,Arial,Helvetica,sans-serif;
+      background:var(--bg);
+      color:var(--text);
     }
-    .container {
-      background:rgba(0,0,0,0.6);
-      padding:40px 30px;
-      border-radius:16px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.4);
-      animation: fadeIn 1.5s ease-in-out;
+    header {
+      display:flex;align-items:center;gap:12px;
+      padding:16px 22px;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      color:white;
+      position:sticky;top:0;z-index:10;
+      box-shadow:0 2px 10px rgba(0,0,0,.3);
     }
-    h1 {
-      font-size:36px;
-      margin-bottom:20px;
-      animation: slideDown 1s ease forwards;
+    header img {width:40px;height:40px;border-radius:10px;}
+    header h1 {font-size:20px;margin:0;font-weight:700;}
+    main {max-width:1100px;margin:0 auto;padding:24px;}
+    .grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;}
+    .card {
+      background:var(--card);padding:18px;border-radius:14px;
+      box-shadow:0 6px 18px rgba(0,0,0,.3);
+      transition:.3s;
     }
-    p {
-      font-size:16px;
-      margin-bottom:24px;
-      color:#d1d5db;
-      animation: slideUp 1s ease forwards;
+    .card:hover {transform:translateY(-6px) scale(1.02);box-shadow:0 10px 25px rgba(124,58,237,.4);}
+    .product-title {font-weight:600;margin-bottom:8px;font-size:16px;}
+    .price {font-weight:700;margin-bottom:12px;color:var(--accent);}
+    .btn {
+      display:inline-block;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      color:white;padding:12px 16px;border:none;border-radius:10px;
+      cursor:pointer;font-weight:600;font-size:14px;
+      transition:.3s;
+      box-shadow:0 4px 10px rgba(236,72,153,.3);
     }
-    .footer {
-      font-size:12px;
-      color:#94a3b8;
+    .btn:hover {opacity:.9;transform:translateY(-2px);}
+    .form-row {margin-bottom:14px;}
+    label {display:block;font-size:14px;color:var(--muted);margin-bottom:6px;}
+    input[type=text],input[type=number], select {
+      width:100%;padding:12px;border-radius:10px;border:1px solid #334155;
+      font-size:14px;background:#0f172a;color:var(--text);
     }
-    @keyframes fadeIn {
-      from {opacity:0;}
-      to {opacity:1;}
+    input:focus,select:focus {outline:2px solid var(--accent);}
+    .total-box {
+      display:flex;justify-content:space-between;align-items:center;
+      padding:14px;border-radius:12px;
+      background:rgba(124,58,237,0.1);margin-top:14px;
     }
-    @keyframes slideDown {
-      from {opacity:0; transform:translateY(-20px);}
-      to {opacity:1; transform:translateY(0);}
+    .back-link {cursor:pointer;color:var(--accent);font-size:14px;font-weight:600;}
+    footer {
+      margin-top:40px;text-align:center;font-size:13px;color:var(--muted);
+      padding:18px;background:#1e293b;
     }
-    @keyframes slideUp {
-      from {opacity:0; transform:translateY(20px);}
-      to {opacity:1; transform:translateY(0);}
+    .socials {margin-top:10px;display:flex;justify-content:center;gap:16px;}
+    .socials a {color:var(--accent);font-weight:600;text-decoration:none;transition:.3s;}
+    .socials a:hover {color:var(--accent2);}
+    .izinkan {
+      background:var(--accent);border:none;padding:10px 18px;
+      border-radius:10px;color:white;font-weight:600;cursor:pointer;
+      transition:.3s;
+    }
+    .izinkan:hover {background:var(--accent2);}
+    .allert {margin-top:18px;display:flex;gap:12px;}
+    .popup {
+      position:fixed;top:0;left:0;width:100%;height:100%;
+      background:#0f172a;opacity:0.95;color:white;display:flex;
+      flex-direction:column;justify-content:center;align-items:center;
+      z-index:9999;text-align:center;padding:20px;
+    }
+    .selamat {
+        margin-bottom:10px;font-size:20px
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🚧 Maintenance</h1>
-    <p>DPW OFFICIAL STORE sedang diperbarui. <br>
-       Mohon bersabar, kami akan kembali online segera.</p>
-    <div class="footer">© 2025 DPW OFFICIAL STORE</div>
+  <header>
+    <img src="https://files.catbox.moe/bt2fdl.png" alt="Logo">
+    <h1>DPW OFFICIAL STORE</h1>
+  </header>
+  <main id="app"></main>
+
+  <footer>
+    © 2025 DPW OFFICIAL STORE
+    <div class="socials">
+      <a href="https://www.tiktok.com/@dpw_official_store">TikTok</a>
+      <a href="https://www.instagram.com/dpw_official_store">Instagram</a>
+    </div>
+  </footer>
+
+  <div class="popup" id="popup">
+    <h2 class="selamat">🎵 Selamat Datang</h2>
+    <p>Izinkan memutar musik di website ini?</p>
+    <div class="allert">
+      <button class="izinkan" onclick="playMusic()">Izinkan</button>
+    </div>
   </div>
+
+  <audio id="bgm" loop>
+    <source src="https://files.catbox.moe/3gsfnm.mp3" type="audio/mpeg">
+  </audio>
+  <script>
+  function playMusic(){
+    document.getElementById("bgm").play();
+    document.getElementById("popup").style.display="none";
+  }
+  </script>
+
+<script>
+const app = document.getElementById('app');
+
+// Data Produk
+const PRODUCTS = [
+  {id:'p1', name:'Capcut Private - 1 Bulan', price:25000},
+  {id:'p2', name:'Capcut Share - 1 Bulan', price:20000},
+  {id:'p3', name:'Viu Private - 1 Bulan', price:20000},
+  {id:'p4', name:'Viu Share - 1 Bulan', price:10000},
+  {id:'p5', name:'remini - sharing web - 1 bulan', price:15000},
+  {id:'p6', name:'remini - sharing aplikasi andro - 1 tahun', price:25000},
+  {id:'p7', name:'ibist pain - sharing andro - 1 tahun', price:30000},
+  {id:'p8', name:'Spotify FamPlan - 1 Bulan', price:25000},
+  {id:'p9', name:'Spotify IndiPlan - 1 Bulan', price:35000},
+  {id:'p10', name:'Scribd - 1 Bulan', price:10000},
+  {id:'p11', name:'Canva - 1 Bulan', price:2000},
+  {id:'p12', name:'Canva - 6 Bulan', price:5000},
+  {id:'p13', name:'Canva - 1 Tahun - Garansi 6 Bulan', price:12000},
+  {id:'p14', name:'Canva - 1 Tahun - Garansi 10 Bulan', price:17000},
+  {id:'p15', name:'Canva - 1 Tahun - Garansi Full', price:20000},
+  {id:'p16', name:'Canva - LifeTime', price:25000},
+  {id:'p17', name:'Netflix - Sharing 1P1U - 1 Hari', price:3000},
+  {id:'p18', name:'Netflix - Sharing 1P1U - 2 Hari', price:5000},
+  {id:'p19', name:'Netflix - Sharing 1P1U - 3 Hari', price:9000},
+  {id:'p20', name:'Netflix - Sharing 1P1U - 7 Hari', price:13000},
+  {id:'p21', name:'Netflix - Sharing 1P1U - 1 Bulan', price:30000},
+  {id:'p22', name:'Netflix - Sharing 1P2U - 1 Hari', price:3000},
+  {id:'p23', name:'Netflix - Sharing 1P2U - 2 Hari', price:5000},
+  {id:'p24', name:'Netflix - Sharing 1P2U - 3 Hari', price:7000},
+  {id:'p25', name:'Netflix - Sharing 1P2U - 7 Hari', price:13000},
+  {id:'p26', name:'Netflix - Sharing 1P2U - 1 Bulan', price:20000},
+  {id:'p27', name:'Netflix - Semi Private - 1 Bulan', price:35000},
+  {id:'p28', name:'Get Contact - Private - 1 Bulan', price:15000},
+  {id:'p29', name:'Panel Pterodactyl - Unli', price:2000},
+  {id:'p30', name:'OTP WhatsApp - WhatsApp', price:10000},
+  {id:'p31', name:'Sewa Bot WhatsApp - 1 Minggu', price:5000},
+  {id:'p32', name:'Sewa Bot Telegram - 1 Minggu', price:10000}
+];
+
+// Format Rupiah
+const rupiah = n => new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR'}).format(n);
+
+// Render daftar produk
+function renderList(){
+  app.innerHTML = `<div class="grid">
+    ${PRODUCTS.map(p => `
+      <div class="card">
+        <div class="product-title">${p.name}</div>
+        <div class="price">${rupiah(p.price)}</div>
+        <button class="btn" onclick="renderForm('${p.id}')">Order</button>
+      </div>
+    `).join('')}
+  </div>`;
+}
+
+// Render form order
+function renderForm(pid){
+  const p = PRODUCTS.find(x => x.id === pid);
+  app.innerHTML = `
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <div>
+          <div class="product-title">Order: ${p.name}</div>
+          <div style="font-size:14px;color:var(--muted)">Harga satuan: ${rupiah(p.price)}</div>
+        </div>
+        <span class="back-link" onclick="renderList()">← Kembali</span>
+      </div>
+      <div class="form-row">
+        <label>Nama Produk</label>
+        <input type="text" id="productName" value="${p.name}" readonly>
+      </div>
+      <div class="form-row">
+        <label>Jumlah</label>
+        <input type="number" id="qty" value="1" min="1">
+      </div>
+      <div class="form-row">
+        <label>Nama Lengkap</label>
+        <input type="text" id="buyer" placeholder="Nama lengkap">
+      </div>
+      <div class="form-row">
+        <label>Metode Pembayaran</label>
+        <select id="payment">
+          <option value="gopay">GoPay</option>
+          <option value="qris">QRIS (+Rp1.000)</option>
+        </select>
+      </div>
+      <div class="total-box">
+        <div>
+          <div style="font-size:13px;color:var(--muted)">Total</div>
+          <div id="total">${rupiah(p.price)}</div>
+        </div>
+        <button class="btn" onclick="submitOrder('${p.id}')">Order</button>
+      </div>
+    </div>
+  `;
+
+  function updateTotal(){
+    const q = parseInt(document.getElementById('qty').value)||1;
+    const pay = document.getElementById('payment').value;
+    let total = q*p.price;
+    if(pay==='qris') total+=1000;
+    document.getElementById('total').textContent = rupiah(total);
+  }
+  document.getElementById('qty').addEventListener('input',updateTotal);
+  document.getElementById('payment').addEventListener('change',updateTotal);
+}
+
+// Submit order via WhatsApp
+function submitOrder(pid){
+  const p = PRODUCTS.find(x => x.id===pid);
+  const qty = Math.max(1,parseInt(document.getElementById('qty').value)||1);
+  const buyer = document.getElementById('buyer').value.trim();
+  const payment = document.getElementById('payment').value;
+
+  if(!buyer){
+    alert("Isi semua field!");
+    return;
+  }
+
+  const recipientWA = "6285168841110"; // nomor penerima tetap
+
+  const message = `┏━🚀 Pesanan Baru ━┓
+┃ Nama    : ${buyer}
+┃ Produk  : ${p.name}
+┃ Jumlah  : ${qty}
+┃ Payment : ${payment.toUpperCase()}
+┗━━━━━━━━━━━━━━┛
+
+Mohon info selanjutnya ya! 😊`;
+
+  const encodedMessage = encodeURIComponent(message);
+  const waLink = `https://wa.me/${recipientWA}?text=${encodedMessage}`;
+  window.open(waLink, "_blank");
+}
+
+
+// Load awal
+renderList();
+</script>
 </body>
 </html>
