@@ -4,104 +4,69 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>DPW OFFICIAL STORE</title>
-    <link rel="icon" type="image/png" href="https://files.catbox.moe/bt2fdl.png">
-   <style>
- :root {
-      --accent:#7c3aed; /* Ungu */
-      --accent2:#ec4899; /* Pink */
-      --muted:#94a3b8;
-      --card:#1e293b;
-      --bg:#0f172a;
-      --text:#f8fafc;
-    }
-    body {
-      margin:0;
-      font-family:Inter,Arial,Helvetica,sans-serif;
-      background:var(--bg);
-      color:var(--text);
-    }
-    header {
-      display:flex;align-items:center;gap:12px;
-      padding:16px 22px;
-      background:linear-gradient(90deg,var(--accent),var(--accent2));
-      color:white;
-      position:sticky;top:0;z-index:10;
-      box-shadow:0 2px 10px rgba(0,0,0,.3);
-    }
+  <link rel="icon" type="image/png" href="https://files.catbox.moe/bt2fdl.png">
+  <style>
+    :root { --accent:#7c3aed; --accent2:#ec4899; --muted:#94a3b8; --card:#1e293b; --bg:#0f172a; --text:#f8fafc; }
+    body { margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text); }
+    header { display:flex;align-items:center;gap:12px;padding:16px 22px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:white;position:sticky;top:0;z-index:10;box-shadow:0 2px 10px rgba(0,0,0,.3);}
     header img {width:40px;height:40px;border-radius:10px;}
     header h1 {font-size:20px;margin:0;font-weight:700;}
-    main {max-width:1100px;margin:0 auto;padding:24px;}
+    main {max-width:1100px;margin:0 auto;padding:24px;display:none;}
     .grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;}
-    .card {
-      background:var(--card);padding:18px;border-radius:14px;
-      box-shadow:0 6px 18px rgba(0,0,0,.3);
-      transition:.3s;
-    }
+    .card {background:var(--card);padding:18px;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.3);transition:.3s;}
     .card:hover {transform:translateY(-6px) scale(1.02);box-shadow:0 10px 25px rgba(124,58,237,.4);}
     .product-title {font-weight:600;margin-bottom:8px;font-size:16px;}
     .price {font-weight:700;margin-bottom:12px;color:var(--accent);}
-    .btn {
-      display:inline-block;
-      background:linear-gradient(90deg,var(--accent),var(--accent2));
-      color:white;padding:12px 16px;border:none;border-radius:10px;
-      cursor:pointer;font-weight:600;font-size:14px;
-      transition:.3s;
-      box-shadow:0 4px 10px rgba(236,72,153,.3);
-    }
+    .btn {display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent2));color:white;padding:12px 16px;border:none;border-radius:10px;cursor:pointer;font-weight:600;font-size:14px;transition:.3s;box-shadow:0 4px 10px rgba(236,72,153,.3);}
     .btn:hover {opacity:.9;transform:translateY(-2px);}
     .form-row {margin-bottom:14px;}
     label {display:block;font-size:14px;color:var(--muted);margin-bottom:6px;}
-    input[type=text],input[type=number], select {
-      width:100%;padding:12px;border-radius:10px;border:1px solid #334155;
-      font-size:14px;background:#0f172a;color:var(--text);
-    }
+    input[type=text],input[type=number], select {width:100%;padding:12px;border-radius:10px;border:1px solid #334155;font-size:14px;background:#0f172a;color:var(--text);}
     input:focus,select:focus {outline:2px solid var(--accent);}
-    .total-box {
-      display:flex;justify-content:space-between;align-items:center;
-      padding:14px;border-radius:12px;
-      background:rgba(124,58,237,0.1);margin-top:14px;
-    }
+    .total-box {display:flex;justify-content:space-between;align-items:center;padding:14px;border-radius:12px;background:rgba(124,58,237,0.1);margin-top:14px;}
     .back-link {cursor:pointer;color:var(--accent);font-size:14px;font-weight:600;}
-    footer {
-      margin-top:40px;text-align:center;font-size:13px;color:var(--muted);
-      padding:18px;background:#1e293b;
-    }
+    footer {margin-top:40px;text-align:center;font-size:13px;color:var(--muted);padding:18px;background:#1e293b;}
     .socials {margin-top:10px;display:flex;justify-content:center;gap:16px;}
     .socials a {color:var(--accent);font-weight:600;text-decoration:none;transition:.3s;}
     .socials a:hover {color:var(--accent2);}
-    .izinkan {
-      background:var(--accent);border:none;padding:10px 18px;
-      border-radius:10px;color:white;font-weight:600;cursor:pointer;
-      transition:.3s;
-    }
+    .izinkan {background:var(--accent);border:none;padding:10px 18px;border-radius:10px;color:white;font-weight:600;cursor:pointer;transition:.3s;}
     .izinkan:hover {background:var(--accent2);}
     .allert {margin-top:18px;display:flex;gap:12px;}
-    .popup {
-      position:fixed;top:0;left:0;width:100%;height:100%;
-      background:#0f172a;opacity:0.95;color:white;display:flex;
-      flex-direction:column;justify-content:center;align-items:center;
-      z-index:9999;text-align:center;padding:20px;
+    .popup {position:fixed;top:0;left:0;width:100%;height:100%;background:#0f172a;opacity:0.95;color:white;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;text-align:center;padding:20px;}
+    .selamat {margin-bottom:10px;font-size:20px}
+
+    /* ✅ LOADING */
+    .loading {
+      position: fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      background:rgba(15,23,42,0.9);
+      display:none;
+      justify-content:center;
+      align-items:center;
+      z-index:99999;
+      color:white;
+      font-size:18px;
+      flex-direction:column;
     }
-    .selamat {
-        margin-bottom:10px;font-size:20px
+    .loader {
+      border:6px solid #334155;
+      border-top:6px solid var(--accent);
+      border-radius:50%;
+      width:50px;
+      height:50px;
+      animation:spin 1s linear infinite;
+      margin-bottom:10px;
+    }
+    @keyframes spin {
+      from{transform:rotate(0deg);}
+      to{transform:rotate(360deg);}
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://files.catbox.moe/bt2fdl.png" alt="Logo">
-    <h1>DPW OFFICIAL STORE</h1>
-  </header>
-  <main id="app"></main>
 
-  <footer>
-    © 2025 DPW OFFICIAL STORE
-    <div class="socials">
-      <a href="https://www.tiktok.com/@dpw_official_store">TikTok</a>
-      <a href="https://www.instagram.com/dpw_official_store">Instagram</a>
-    </div>
-  </footer>
-
+  <!-- ✅ POPUP -->
   <div class="popup" id="popup">
     <h2 class="selamat">🎵 Selamat Datang</h2>
     <p>Izinkan memutar musik di website ini?</p>
@@ -113,58 +78,61 @@
   <audio id="bgm" loop>
     <source src="https://files.catbox.moe/3gsfnm.mp3" type="audio/mpeg">
   </audio>
-  <script>
-  function playMusic(){
-    document.getElementById("bgm").play();
-    document.getElementById("popup").style.display="none";
-  }
-  </script>
+
+  <!-- ✅ LOADING -->
+  <div class="loading" id="loading">
+    <div class="loader"></div>
+    <div>Sedang memuat produk...</div>
+  </div>
+
+  <header>
+    <img src="https://files.catbox.moe/bt2fdl.png" alt="Logo">
+    <h1>DPW OFFICIAL STORE</h1>
+  </header>
+
+  <main id="app"></main>
+
+  <footer>
+    © 2025 DPW OFFICIAL STORE
+    <div class="socials">
+      <a href="https://www.tiktok.com/@dpw_official_store">TikTok</a>
+      <a href="https://www.instagram.com/dpw_official_store">Instagram</a>
+    </div>
+  </footer>
 
 <script>
+function playMusic(){
+  document.getElementById("bgm").play();
+  document.getElementById("popup").style.display="none";
+  document.getElementById("loading").style.display = "flex";
+  fetchDataProduk();
+}
+
 const app = document.getElementById('app');
+let PRODUCTS = [];
 
-// Data Produk
-const PRODUCTS = [
-  {id:'p1', name:'Capcut Private - 1 Bulan', price:25000},
-  {id:'p2', name:'Capcut Share - 1 Bulan', price:20000},
-  {id:'p3', name:'Viu Private - 1 Bulan', price:20000},
-  {id:'p4', name:'Viu Share - 1 Bulan', price:10000},
-  {id:'p5', name:'remini - sharing web - 1 bulan', price:15000},
-  {id:'p6', name:'remini - sharing aplikasi andro - 1 tahun', price:25000},
-  {id:'p7', name:'ibist pain - sharing andro - 1 tahun', price:30000},
-  {id:'p8', name:'Spotify FamPlan - 1 Bulan', price:25000},
-  {id:'p9', name:'Spotify IndiPlan - 1 Bulan', price:35000},
-  {id:'p10', name:'Scribd - 1 Bulan', price:10000},
-  {id:'p11', name:'Canva - 1 Bulan', price:2000},
-  {id:'p12', name:'Canva - 6 Bulan', price:5000},
-  {id:'p13', name:'Canva - 1 Tahun - Garansi 6 Bulan', price:12000},
-  {id:'p14', name:'Canva - 1 Tahun - Garansi 10 Bulan', price:17000},
-  {id:'p15', name:'Canva - 1 Tahun - Garansi Full', price:20000},
-  {id:'p16', name:'Canva - LifeTime', price:25000},
-  {id:'p17', name:'Netflix - Sharing 1P1U - 1 Hari', price:3000},
-  {id:'p18', name:'Netflix - Sharing 1P1U - 2 Hari', price:5000},
-  {id:'p19', name:'Netflix - Sharing 1P1U - 3 Hari', price:9000},
-  {id:'p20', name:'Netflix - Sharing 1P1U - 7 Hari', price:13000},
-  {id:'p21', name:'Netflix - Sharing 1P1U - 1 Bulan', price:30000},
-  {id:'p22', name:'Netflix - Sharing 1P2U - 1 Hari', price:3000},
-  {id:'p23', name:'Netflix - Sharing 1P2U - 2 Hari', price:5000},
-  {id:'p24', name:'Netflix - Sharing 1P2U - 3 Hari', price:7000},
-  {id:'p25', name:'Netflix - Sharing 1P2U - 7 Hari', price:13000},
-  {id:'p26', name:'Netflix - Sharing 1P2U - 1 Bulan', price:20000},
-  {id:'p27', name:'Netflix - Semi Private - 1 Bulan', price:35000},
-  {id:'p28', name:'Get Contact - Private - 1 Bulan', price:15000},
-  {id:'p29', name:'Panel Pterodactyl - Unli', price:2000},
-  {id:'p30', name:'OTP WhatsApp - Indonesia', price:10000},
-  {id:'p31', name:'Sewa Bot WhatsApp - 1 Minggu', price:5000},
-  {id:'p32', name:'Sewa Bot Telegram - 1 Minggu', price:10000},
-  {id:'p32', name:'Domain - my.id - 1 Tahun', price:30000},
-  {id:'p33', name:'Perpanjangan - Domain - my.id - 1 Tahun', price:45000}
-];
+function fetchDataProduk(){
+  fetch('https://script.google.com/macros/s/AKfycbyLB92zVhQN0pEahWhKuN4aM4SIH2whehjrj_3_9GSXjV1T4d-P2L9mx1LxhYl3mp3x7w/exec')
+    .then(res => res.json())
+    .then(data => {
+      PRODUCTS = data.map(p => ({
+        id: p.id,
+        name: p.name,
+        price: Number(p.price)
+      }));
+      renderList();
+      document.querySelector('main').style.display = 'block';
+    })
+    .catch(() => {
+      app.innerHTML = "<p style='text-align:center;color:red'>Gagal memuat data produk</p>";
+    })
+    .finally(() => {
+      document.getElementById("loading").style.display = "none";
+    });
+}
 
-// Format Rupiah
 const rupiah = n => new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR'}).format(n);
 
-// Render daftar produk
 function renderList(){
   app.innerHTML = `<div class="grid">
     ${PRODUCTS.map(p => `
@@ -177,7 +145,6 @@ function renderList(){
   </div>`;
 }
 
-// Render form order
 function renderForm(pid){
   const p = PRODUCTS.find(x => x.id === pid);
   app.innerHTML = `
@@ -229,19 +196,12 @@ function renderForm(pid){
   document.getElementById('payment').addEventListener('change',updateTotal);
 }
 
-// Submit order via WhatsApp
 function submitOrder(pid){
   const p = PRODUCTS.find(x => x.id===pid);
   const qty = Math.max(1,parseInt(document.getElementById('qty').value)||1);
   const buyer = document.getElementById('buyer').value.trim();
   const payment = document.getElementById('payment').value;
-
-  if(!buyer){
-    alert("Isi Semua Kolom!");
-    return;
-  }
-
-  const recipientWA = "6285786335575"; // nomor penerima tetap
+  if(!buyer){ alert("Isi Semua Kolom!"); return; }
 
   const message = `┏━🚀 Pesanan Baru ━┓
 ┃ Nama    : ${buyer}
@@ -252,14 +212,8 @@ function submitOrder(pid){
 
 Mohon info selanjutnya ya! 😊`;
 
-  const encodedMessage = encodeURIComponent(message);
-  const waLink = `https://wa.me/${recipientWA}?text=${encodedMessage}`;
-  window.open(waLink, "_blank");
+  window.open(`https://wa.me/6285786335575?text=${encodeURIComponent(message)}`,"_blank");
 }
-
-
-// Load awal
-renderList();
 </script>
 </body>
 </html>
