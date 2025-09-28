@@ -15,10 +15,17 @@
     .grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;}
     .card {background:var(--card);padding:18px;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.3);transition:.3s;}
     .card:hover {transform:translateY(-6px) scale(1.02);box-shadow:0 10px 25px rgba(124,58,237,.4);}
-    .product-title {font-weight:600;margin-bottom:8px;font-size:16px;}
-    .price {font-weight:700;margin-bottom:12px;color:var(--accent);}
+    
+    /* CARD CONTENT FLEX */
+    .card-content { display:flex; align-items:center; gap:12px; }
+    .product-info { display:flex; flex-direction:column; gap:6px; }
+    .product-logo { width:50px; height:50px; object-fit:contain; border-radius:10px; }
+
+    .product-title {font-weight:600;font-size:16px;}
+    .price {font-weight:700;color:var(--accent);}
     .btn {display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent2));color:white;padding:12px 16px;border:none;border-radius:10px;cursor:pointer;font-weight:600;font-size:14px;transition:.3s;box-shadow:0 4px 10px rgba(236,72,153,.3);}
     .btn:hover {opacity:.9;transform:translateY(-2px);}
+    
     .form-row {margin-bottom:14px;}
     label {display:block;font-size:14px;color:var(--muted);margin-bottom:6px;}
     input[type=text],input[type=number], select {width:100%;padding:12px;border-radius:10px;border:1px solid #334155;font-size:14px;background:#0f172a;color:var(--text);}
@@ -35,38 +42,15 @@
     .popup {position:fixed;top:0;left:0;width:100%;height:100%;background:#0f172a;opacity:0.95;color:white;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;text-align:center;padding:20px;}
     .selamat {margin-bottom:10px;font-size:20px}
 
-    /* ✅ LOADING */
-    .loading {
-      position: fixed;
-      top:0; left:0;
-      width:100%; height:100%;
-      background:rgba(15,23,42,0.9);
-      display:none;
-      justify-content:center;
-      align-items:center;
-      z-index:99999;
-      color:white;
-      font-size:18px;
-      flex-direction:column;
-    }
-    .loader {
-      border:6px solid #334155;
-      border-top:6px solid var(--accent);
-      border-radius:50%;
-      width:50px;
-      height:50px;
-      animation:spin 1s linear infinite;
-      margin-bottom:10px;
-    }
-    @keyframes spin {
-      from{transform:rotate(0deg);}
-      to{transform:rotate(360deg);}
-    }
+    /* LOADING */
+    .loading { position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,23,42,0.9); display:none; justify-content:center; align-items:center; z-index:99999; color:white; font-size:18px; flex-direction:column;}
+    .loader { border:6px solid #334155; border-top:6px solid var(--accent); border-radius:50%; width:50px; height:50px; animation:spin 1s linear infinite; margin-bottom:10px; }
+    @keyframes spin { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
   </style>
 </head>
 <body>
 
-  <!-- ✅ POPUP -->
+  <!-- POPUP -->
   <div class="popup" id="popup">
     <h2 class="selamat">🎵 Selamat Datang</h2>
     <p>Izinkan memutar musik di website ini?</p>
@@ -79,7 +63,7 @@
     <source src="https://files.catbox.moe/3gsfnm.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- ✅ LOADING -->
+  <!-- LOADING -->
   <div class="loading" id="loading">
     <div class="loader"></div>
     <div>Sedang memuat produk...</div>
@@ -118,7 +102,8 @@ function fetchDataProduk(){
       PRODUCTS = data.map(p => ({
         id: p.id,
         name: p.name,
-        price: Number(p.price)
+        price: Number(p.price),
+        image: p.image // pastikan di Sheet ada kolom image
       }));
       renderList();
       document.querySelector('main').style.display = 'block';
@@ -137,9 +122,14 @@ function renderList(){
   app.innerHTML = `<div class="grid">
     ${PRODUCTS.map(p => `
       <div class="card">
-        <div class="product-title">${p.name}</div>
-        <div class="price">${rupiah(p.price)}</div>
-        <button class="btn" onclick="renderForm('${p.id}')">Order</button>
+        <div class="card-content">
+          <img src="${p.image}" alt="Logo ${p.name}" class="product-logo">
+          <div class="product-info">
+            <div class="product-title">${p.name}</div>
+            <div class="price">${rupiah(p.price)}</div>
+            <button class="btn" onclick="renderForm('${p.id}')">Order</button>
+          </div>
+        </div>
       </div>
     `).join('')}
   </div>`;
